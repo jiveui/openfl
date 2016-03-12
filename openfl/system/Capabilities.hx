@@ -1,6 +1,7 @@
 package openfl.system; #if !openfl_legacy
 
 
+import haxe.CallStack;
 import haxe.macro.Compiler;
 
 #if (js && html5)
@@ -123,19 +124,22 @@ import js.Browser;
 	
 	private static function get_screenResolutionX ():Float { 
 		
-		var window = Lib.application.window;
-		
-		if (window != null) {
-			
-			var display = window.display;
-			
-			if (display != null) {
-				
-				return display.currentMode.width;
-				
-			}
-			
-		}
+        if (null != Lib.application) {
+
+            var window = Lib.application.window;
+
+            if (window != null) {
+
+                var display = window.display;
+
+                if (display != null) {
+
+                    return display.currentMode.width;
+
+                }
+
+            }
+        }
 		
 		return 0;
 		
@@ -143,20 +147,23 @@ import js.Browser;
 	
 	
 	private static function get_screenResolutionY ():Float {
+
+        if (null != Lib.application) {
+
+            var window = Lib.application.window;
 		
-		var window = Lib.application.window;
-		
-		if (window != null) {
-			
-			var display = window.display;
-			
-			if (display != null) {
-				
-				return display.currentMode.height;
-				
-			}
-			
-		}
+            if (window != null) {
+
+                var display = window.display;
+
+                if (display != null) {
+
+                    return display.currentMode.height;
+
+                }
+
+            }
+        }
 		
 		return 0;
 		
